@@ -5,10 +5,13 @@ import java.util.Stack;
 public class Main{
     public static void main(String[] args){
         Queue<TNode> Q = new LinkedList<TNode>();
-
+        BST tree = new BST();
+        tree.insertNode(10);
+        tree.insertNode(4);
+        tree.insertNode(12);
+        tree.DFS_postorder(tree.root);
     }
 }
-
 
 //node class for BST
 class TNode{
@@ -34,20 +37,39 @@ class  BST{
 
     public boolean insertNode(int v){
         TNode nNode=new TNode(v);
-        root=recursiveInsertNode(nNode);
+        recursiveInsertNode(nNode,root);
         return true;
     }
 
-    private TNode recursiveInsertNode(TNode node){
-    //completethe code
+    private void recursiveInsertNode(TNode node,TNode root1){
+        if(root== null){
+            root = node;
+            return;
+        }
+        if(node.data < root1.data)
+            if(root1.left == null)
+                root1.left = node;
+            else{
+                recursiveInsertNode(node, root1.left);
+            }
+        else if (node.data > root1.data && root1.right == null)
+                if(root1.right == null)
+                    root1.right = node;
+                else
+                    recursiveInsertNode(node, root1.right);
     }
 
     TNode search(int v){
-        return recursiveSearch(v);
+        return recursiveSearch(root,v);
     }
 
-    private TNode recursiveSearch(int v){
-    //complete the task
+    private TNode recursiveSearch(TNode node,int v){
+        if(node.data == v)
+            return node;
+        else if (node.data > v)
+             return recursiveSearch(node.right, v);
+        else
+            return recursiveSearch(node.left, v);
     }
 
 
@@ -75,7 +97,7 @@ class  BST{
             Q.add(n);
             while(!Q.isEmpty()){
                 n = Q.remove();
-                System.out.println(n.data);
+                System.out.print(n.data+" ");
                 if(n.left!=null)
                     Q.add(n.left);
                 if(n.right!=null)
@@ -117,8 +139,8 @@ class  BST{
 
     void DFS_postorder(TNode node){
         if(node!=null){
-            DFS_postorder(node.right);
             DFS_postorder(node.left);
+            DFS_postorder(node.right);
             System.out.println(node.data);
         }
     }
