@@ -5,6 +5,7 @@ import java.util.Stack;
 public class Main{
     public static void main(String[] args){
         Queue<TNode> Q = new LinkedList<TNode>();
+
     }
 }
 
@@ -33,19 +34,19 @@ class  BST{
 
     public boolean insertNode(int v){
         TNode nNode=new TNode(v);
-        root=recursiveInsertNode(TNode node,nNode  );
+        root=recursiveInsertNode(nNode);
         return true;
     }
 
-    private TNode recursiveInsertNode(TNode node, TNode nNode ){
+    private TNode recursiveInsertNode(TNode node){
     //completethe code
     }
 
     TNode search(int v){
-    return recursiveSearch(root,v);
+        return recursiveSearch(v);
     }
 
-    private TNode recursiveSearch(TNode node, int v){
+    private TNode recursiveSearch(int v){
     //complete the task
     }
 
