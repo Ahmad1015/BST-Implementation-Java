@@ -9,7 +9,13 @@ public class Main{
         tree.insertNode(10);
         tree.insertNode(4);
         tree.insertNode(12);
-        tree.DFS_postorder(tree.root);
+        tree.insertNode(3);
+        tree.insertNode(15);
+        tree.insertNode(35);
+        tree.BFS(tree.root, Q);
+        System.out.println();
+        TNode abc = tree.Find_parent(tree.root, 35);
+        System.out.println(abc.data);
     }
 }
 
@@ -52,7 +58,7 @@ class  BST{
             else{
                 recursiveInsertNode(node, root1.left);
             }
-        else if (node.data > root1.data && root1.right == null)
+        else if (node.data > root1.data)
                 if(root1.right == null)
                     root1.right = node;
                 else
@@ -143,6 +149,23 @@ class  BST{
             DFS_postorder(node.right);
             System.out.println(node.data);
         }
+    }
+    
+    TNode Find_parent(TNode node,int value){
+        TNode temp = new TNode(value);
+        if(node.left != null && node.left.data == temp.data )
+            return node;
+        else if (node.right !=null && node.right.data == temp.data )
+            return node;
+        else{
+            if(temp.data>node.data)
+                return Find_parent(node.right, value);
+            else if(temp.data<node.data)
+                return Find_parent(node.left, value);
+            else
+                return null;
+        }
+   
     }
 
 }
