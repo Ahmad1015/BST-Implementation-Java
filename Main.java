@@ -6,18 +6,21 @@ public class Main{
     public static void main(String[] args){
         Queue<TNode> Q = new LinkedList<TNode>();
         BST tree = new BST();
-        tree.insertNode(10);
+        tree.insertNode(5);
         tree.insertNode(4);
-        tree.insertNode(12);
+        tree.insertNode(6);
         tree.insertNode(3);
         tree.insertNode(15);
         tree.insertNode(35);
+        tree.insertNode(12);
+        tree.insertNode(13);
         //tree.BFS(tree.root, Q);
         System.out.println();
-        tree.insertNode(20);
+        
         tree.BFS(tree.root, Q);
         System.out.println();
-        System.out.println(tree.depth_node(20,tree.root));
+        System.out.println(tree.depth_tree());
+
     }
 }
 
@@ -193,5 +196,25 @@ class  BST{
             }
         }
             return count;
+    }
+
+    int depth_tree(){
+        int count = 0;
+        TNode node = root;
+        Queue<TNode> QQ = new LinkedList<TNode>();
+        QQ.add(node);
+        while(!QQ.isEmpty()){
+            TNode temp = QQ.remove();
+            if (temp.left!=null){
+                QQ.add(temp.left);
+            }
+            if(temp.right!=null){
+                QQ.add(temp.right);
+            }
+            int val = depth_node(temp.data, root);
+            if (val>count)
+                count= val;
+        }
+        return count;
     }
 }
