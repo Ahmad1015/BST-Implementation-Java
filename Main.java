@@ -12,10 +12,12 @@ public class Main{
         tree.insertNode(3);
         tree.insertNode(15);
         tree.insertNode(35);
+        //tree.BFS(tree.root, Q);
+        System.out.println();
+        tree.insertNode(20);
         tree.BFS(tree.root, Q);
         System.out.println();
-        TNode abc = tree.Find_parent(tree.root, 35);
-        System.out.println(abc.data);
+        System.out.println(tree.depth_node(20,tree.root));
     }
 }
 
@@ -168,4 +170,28 @@ class  BST{
    
     }
 
+    int depth_node(int val,TNode node ){
+        int count = 0;
+        TNode temp = new TNode(val);
+        if(root.data == temp.data)
+            return 0;
+        else{
+            if(node.data>temp.data){
+                count++;
+                if(node.left != null){
+                    count += depth_node(val, node.left);
+                }
+            }
+            if(node.data<temp.data){
+                count++;
+                if(node.right !=null){
+                    count+=depth_node(val, node.right);
+                }
+            }
+            if(node.data == temp.data){
+                return count++;
+            }
+        }
+            return count;
+    }
 }
