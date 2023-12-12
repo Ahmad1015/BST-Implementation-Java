@@ -217,4 +217,26 @@ class  BST{
         }
         return count;
     }
+
+    boolean Full_Or_Not_Tree(){
+        if(root == null){
+            return true;
+        }
+        TNode node = root;
+        Queue<TNode> QQ = new LinkedList<TNode>();
+        QQ.add(node);
+        while(!QQ.isEmpty()){
+            TNode temp = QQ.remove();
+            if (temp.left!=null){
+                QQ.add(temp.left);
+            }
+            if(temp.right!=null){
+                QQ.add(temp.right);
+            }
+            if(temp.left != null && temp.right == null || temp.left == null && temp.right != null){
+                return false;
+            }
+        }
+        return true;
+    }
 }
