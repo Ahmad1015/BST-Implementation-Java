@@ -263,4 +263,13 @@ class  BST{
         }
     }
 
+    boolean check_equal(TNode node_2){
+        Queue<TNode> qq = new LinkedList<>();
+        Queue<TNode> q2 = new LinkedList<>();
+        qq.add(node_2);
+        while(!qq.isEmpty()){
+            TNode temp = qq.remove();
+            // Complete this later 
+        }
+    }
 }
