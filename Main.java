@@ -14,12 +14,9 @@ public class Main{
         tree.insertNode(35);
         tree.insertNode(12);
         tree.insertNode(13);
-        //tree.BFS(tree.root, Q);
-        System.out.println();
         
-        tree.BFS(tree.root, Q);
         System.out.println();
-        System.out.println(tree.depth_tree());
+        System.out.println(tree.total_number_node());
 
     }
 }
@@ -239,4 +236,31 @@ class  BST{
         }
         return true;
     }
+
+    void Same_Level(TNode node_1,TNode node_2){
+    }
+
+    int total_number_node(){
+        if(root==null)
+            return 0;
+        else{
+            int count=1;
+            Queue<TNode> qq = new LinkedList<>();
+            qq.add(root);
+            TNode temp = root;
+            while(!qq.isEmpty()){
+                temp = qq.remove();
+                if(temp.left !=null){
+                    qq.add(temp.left);
+                    count++;
+                }
+                if(temp.right !=null){
+                    qq.add(temp.right);
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
+
 }
