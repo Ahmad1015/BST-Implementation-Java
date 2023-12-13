@@ -172,23 +172,22 @@ class  BST{
 
     int depth_node(int val,TNode node ){
         int count = 0;
-        TNode temp = new TNode(val);
-        if(root.data == temp.data)
+        if(root.data == val)
             return 0;
         else{
-            if(node.data>temp.data){
+            if(node.data>val){
                 count++;
                 if(node.left != null){
                     count += depth_node(val, node.left);
                 }
             }
-            if(node.data<temp.data){
+            if(node.data<val){
                 count++;
                 if(node.right !=null){
                     count+=depth_node(val, node.right);
                 }
             }
-            if(node.data == temp.data){
+            if(node.data == val){
                 return count++;
             }
         }
@@ -237,7 +236,13 @@ class  BST{
         return true;
     }
 
-    void Same_Level(TNode node_1,TNode node_2){
+    boolean Same_Level(TNode node_1,TNode node_2){
+        int node_1_depth = depth_node(node_1.data, node_1);
+        int node_2_depth = depth_node(node_2.data, node_2);
+        if(node_1_depth == node_2_depth)
+            return true;
+        else
+            return false;
     }
 
     int total_number_node(){
